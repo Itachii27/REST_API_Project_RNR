@@ -3,7 +3,6 @@ class CreateAlljobs < ActiveRecord::Migration[7.0]
     create_table :alljobs do |t|
       t.string :title
       t.text :body
-
       t.timestamps
     end
   end
