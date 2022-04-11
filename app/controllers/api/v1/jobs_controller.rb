@@ -35,7 +35,7 @@ module Api
                 end
             end
 
-           def users
+           def user
                 jobs = Alljob.find(params[:id])
                 if jobs.update(jobs_params)
                     render json: {status: 'success', message: 'Updated', data: jobs}, status: :ok
@@ -45,29 +45,15 @@ module Api
                 end
             end
             
-            #def user name email
-             #   apply= Alljob.find(params[:title])
-              # if apply.update(apply_params)
-               #  render json: {status: 'success', message: 'Updated', data: apply}, status: :ok
-
-               #else
-                #  render json: {status: 'error', message: 'Not updated', data: apply.errors}, status: :unprocessable_entity
-            #end
-            #end
-            
             private
 
             def jobs_params
-                params.permit(:title, :body, :jobStatus)
+                params.permit(:title, :body, :jobStatus, :name)
             end
-
-            #user
-          # def apply_params
-           #  params.permit(:jobStatus)
-            #end
 
             
         end
+        
     end
 end
 

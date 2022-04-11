@@ -3,9 +3,14 @@ Rails.application.routes.draw do
  
   namespace 'api' do
     namespace 'v1' do
-      resources :jobs
- #     resources "users", :controller => :users_jobs, :as => :user
-    end
+      resources :jobs 
   end
 end
 
+namespace 'api' do
+  namespace 'v1' do
+    resources :users
+end
+end
+
+end
