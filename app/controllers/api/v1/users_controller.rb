@@ -38,7 +38,7 @@ module Api
             private
 
             def users_params
-                params.permit(:username, :email, :name)
+                params.require(:alljob).permit(:username, :email)
             end
 
             #user

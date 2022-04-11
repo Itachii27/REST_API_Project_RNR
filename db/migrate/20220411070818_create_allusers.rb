@@ -3,7 +3,6 @@ class CreateAllusers < ActiveRecord::Migration[7.0]
     create_table :allusers do |t|
       t.string :username
       t.string :email
-      t.string :name
 
       t.timestamps
     end
