@@ -10,22 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_11_072118) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_12_100648) do
   create_table "alljobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "jobStatus"
-    t.integer "alluser_id"
-    t.index ["alluser_id"], name: "index_alljobs_on_alluser_id"
   end
 
-  create_table "allusers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username"
     t.string "email"
+    t.bigint "alljob_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["alljob_id"], name: "index_users_on_alljob_id"
   end
 
+  add_foreign_key "users", "alljobs"
 end

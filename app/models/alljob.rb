@@ -1,4 +1,4 @@
 class Alljob < ApplicationRecord
-  belongs_to :alluser
+    has_many :user
     validates :title, presence: true
 end
