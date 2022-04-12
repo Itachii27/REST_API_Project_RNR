@@ -16,7 +16,7 @@ module Api
                 
 
               users = User.new(users_params);
-                
+            #    debugger
                if users.save
                 render json: {status: 'success', message: 'Saved', data: users}, status: :ok
                else
@@ -32,12 +32,14 @@ module Api
 
             def update
                 users = User.find(params[:id])
-                if users.update(users_params)
-                    render json: {status: 'success', message: 'Updated', data: users}, status: :ok
+                users.update(users_params)
+             #   users.update(:alljob_attributes => {:title => 'testing'})
+               if users.update(users_params)
+                 render json: {status: 'success', message: 'Updated', data: users}, status: :ok
 
                 else
                     render json: {status: 'error', message: 'Not updated', data: users.errors}, status: :unprocessable_entity
-                end
+               end
             end
 
             private
@@ -45,8 +47,11 @@ module Api
             def users_params
                # params.require(:user).permit(alljob_ids: [])
             #   params.require(:user).permit(:username, :email, alljob: [])
-            params.require(:user).permit(:username, :email , :alljob_id)
-            end 
+        #    params.require(:user).permit(:username, :email , :alljob_id)
+          #  params.require(:user).permit(:username, :email, :title )
+             params.require(:user).permit(:username, :email, statuses_attributes: [:id, :alljob_id, :user_id ])
+
+        end 
 
             #user
           # def apply_params

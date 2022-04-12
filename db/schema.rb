@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_12_100648) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_12_122201) do
   create_table "alljobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -19,14 +19,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_12_100648) do
     t.boolean "jobStatus"
   end
 
+  create_table "statuses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "alljob_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alljob_id"], name: "index_statuses_on_alljob_id"
+    t.index ["user_id"], name: "index_statuses_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.bigint "alljob_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["alljob_id"], name: "index_users_on_alljob_id"
   end
 
-  add_foreign_key "users", "alljobs"
+  add_foreign_key "statuses", "alljobs"
+  add_foreign_key "statuses", "users"
 end
